@@ -1,27 +1,32 @@
 const Event = require('../models/event');
 
 exports.index = function(req, res) {
-    const events = Event.getEvents();
+    const events = Event.getAllEvents(); 
     res.send(events);
 };
 
 exports.store = function(req, res) {
-    const { title, description, date, maxSeats} = req.body;
+    const { title, description, date, maxSeats } = req.body;
 
-    const newEvent = new Event(events.lenght + 1, title, description, date, maxSeats);
+    // Inizializza la variabile events ottenendo gli eventi esistenti
+    const events = Event.getAllEvents();
+
+    const newEvent = new Event(events.length + 1, title, description, date, maxSeats);
 
     events.push(newEvent);
-    Event.saveEvents(events);
+    Event.saveAllEvents(events); 
 
     res.status(201).json(newEvent);
 };
 
 exports.update = function(req, res) {
     const { id } = req.params;
-    const { title, description, date, maxSeats} = req.body;
+    const { title, description, date, maxSeats } = req.body;
 
-    const events = Event.getEvents();
-    const existingEvent = events.find(event => event.id === id);
+    // Inizializza la variabile events ottenendo gli eventi esistenti
+    const events = Event.getAllEvents();
+    
+    const existingEvent = events.find(event => event.id === parseInt(id));
     if (!existingEvent) {
         res.status(404).send('Evento non trovato');
     } else {
@@ -29,8 +34,7 @@ exports.update = function(req, res) {
         existingEvent.description = description;
         existingEvent.date = date;
         existingEvent.maxSeats = maxSeats;
-        Event.saveEvents(events);
+        Event.saveAllEvents(events); 
         res.status(200).json(existingEvent);
     }
-    res.json(events);
 };
