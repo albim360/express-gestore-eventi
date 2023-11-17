@@ -12,7 +12,7 @@ class Event {
 
     static getAllEvents() {
         try {
-            const eventsData = fs.readFileSync(path.resolve(__dirname, 'events.json'), 'utf-8');
+            const eventsData = fs.readFileSync(path.resolve(__dirname, '../data/events.json'), 'utf-8');
             return JSON.parse(eventsData);
         } catch (error) {
             // Se il file non esiste o ci sono altri problemi, ritorna un array vuoto
@@ -21,7 +21,7 @@ class Event {
     }
 
     static saveAllEvents(events) {
-        fs.writeFileSync(path.resolve(__dirname, 'events.json'), JSON.stringify(events, null, 2), 'utf-8');
+        fs.writeFileSync(path.resolve(__dirname, '../data/events.json'), JSON.stringify(events, null, 2), 'utf-8');
     }
 
     static getEventById(eventId) {

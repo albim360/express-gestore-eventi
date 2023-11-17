@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Conferenza",
+    "description": "Descrizione conferenza",
+    "date": "2023-11-17",
+    "maxSeats": 100
+  },
+  {
+    "id": 2,
+    "title": "Conferenzaa",
+    "description": "Descrizione conferenza",
+    "date": "2023-11-17",
+    "maxSeats": 100
+  }
+]

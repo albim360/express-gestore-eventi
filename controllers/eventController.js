@@ -1,7 +1,15 @@
 const Event = require('../models/event');
 
 exports.index = function(req, res) {
-    const events = Event.getAllEvents(); 
+    const filters = req.query;
+
+    if (Object.keys(filters).length === 0) {
+        // Se la query string è vuota, restituisci un messaggio 
+        res.send('La query string è vuota. Aggiungi filtri per ottenere risultati specifici.');
+        return;
+    }
+
+    const events = Event.getFilteredEvents(filters);
     res.send(events);
 };
 

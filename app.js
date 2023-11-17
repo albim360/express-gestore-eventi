@@ -1,5 +1,6 @@
 const express = require('express');
 const eventRouter = require('./routes/events')
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,8 @@ app.use('/events', eventRouter);
 app.get('/', (req, res) => {
     res.send('Benvenuto nel server!');
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server in esecuzione su http://localhost:${port}`);
