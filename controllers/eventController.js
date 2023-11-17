@@ -1,5 +1,8 @@
+const Event = require('../models/event');
+
 exports.index = function(req, res) {
-    res.render('index', { title: 'Express' });
+    const events = Event.getEvents();
+    res.send(events);
 }
 
 exports.store = function(req, res) {
@@ -7,5 +10,5 @@ exports.store = function(req, res) {
 }
 
 exports.update = function(req, res) {
-    
+
 }
