@@ -9,4 +9,13 @@ class Event {
         this.date = date;
         this.location = maxSeats;
     }
+    static getEvents() {
+        const events = fs.readFileSync(path.join(__dirname, 'events.json'), 'utf-8');
+        return JSON.parse(events);
+    }
+    static saveEvents(events) {
+        fs.writeFileSync(path.join(__dirname, 'events.json'), JSON.stringify(events));
+    }
 }
+
+module.exports = Event;
